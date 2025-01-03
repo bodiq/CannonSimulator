@@ -226,6 +226,7 @@ MonoBehaviour:
   cameraSpot: {fileID: 1763512536703332677}
   mainConstruction: {fileID: 4154099998962842286}
   cannonPipe: {fileID: 8474371943055062526}
+  cannonMovementSettings: {fileID: 11400000, guid: 1835c0f88b03b53409157bb479a08cea, type: 2}
 --- !u!1 &7154126244468368320
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,31 +1,30 @@
-﻿using UnityEngine;
+﻿using ScriptableObjects;
+using UnityEngine;
 
-namespace DefaultNamespace
+namespace Cannon
 {
     public class CannonMovement
     {
         private readonly Transform _mainConstruction;
         private readonly Transform _firePipe;
+        private readonly CannonMovementSettings _cannonMovementSettings;
 
         private float _maxVerticalRotation;
         private float _minVerticalRotation;
-        
-        private const float FirePipeMaxAnglesOffset = 45f;
-        private const float FirePipeMinAnglesOffset = 10f;
 
-
-        public CannonMovement(Transform mainConstruction, Transform firePipe)
+        public CannonMovement(Transform mainConstruction, Transform firePipe, CannonMovementSettings cannonMovementSettings)
         {
             _mainConstruction = mainConstruction;
             _firePipe = firePipe;
+            _cannonMovementSettings = cannonMovementSettings;
             
             SetRotationRange();
         }
 
         private void SetRotationRange()
         {
-            _maxVerticalRotation = _firePipe.rotation.eulerAngles.z + FirePipeMaxAnglesOffset;
-            _minVerticalRotation = _firePipe.rotation.eulerAngles.z - FirePipeMinAnglesOffset;
+            _maxVerticalRotation = _firePipe.rotation.eulerAngles.z + _cannonMovementSettings.FirePipeMaxAngles;
+            _minVerticalRotation = _firePipe.rotation.eulerAngles.z - _cannonMovementSettings.FirePipeMinAngles;
         }
 
         public void MoveCannon()
@@ -39,7 +38,7 @@ namespace DefaultNamespace
             var verticalInput = Input.GetAxis("Vertical");
             if (Mathf.Abs(verticalInput) > 0.1f)
             {
-                var rotationAmount = verticalInput * Time.deltaTime * 100f;
+                var rotationAmount = verticalInput * Time.deltaTime * _cannonMovementSettings.VerticalRotationSpeed;
                 
                 var currentZRotation = _firePipe.eulerAngles.z;
                 currentZRotation = Mathf.Clamp(currentZRotation - rotationAmount, _minVerticalRotation, _maxVerticalRotation);
@@ -54,7 +53,7 @@ namespace DefaultNamespace
             var horizontalInput = Input.GetAxis("Horizontal");
             if (Mathf.Abs(horizontalInput) > 0.1f)
             {
-                var rotationAmount = horizontalInput * Time.deltaTime * 100f;
+                var rotationAmount = horizontalInput * Time.deltaTime * _cannonMovementSettings.HorizontalRotationSpeed;
                 _mainConstruction.Rotate(Vector3.up, rotationAmount);
             }
         }
