@@ -14,7 +14,7 @@ public class Cannon : MonoBehaviour
 
     private void Start()
     {
-        _cannonCameraSpot = new CannonCameraSpot(Camera.main, cameraSpot);
+        _cannonCameraSpot = new CannonCameraSpot(Camera.main, cameraSpot, mainConstruction);
         _cannonMovement = new CannonMovement(mainConstruction, cannonPipe);
     }
 

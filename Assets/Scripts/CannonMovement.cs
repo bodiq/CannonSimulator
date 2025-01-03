@@ -4,14 +4,28 @@ namespace DefaultNamespace
 {
     public class CannonMovement
     {
-        private Transform _mainConstruction;
-        private Transform _firePipe;
+        private readonly Transform _mainConstruction;
+        private readonly Transform _firePipe;
+
+        private float _maxVerticalRotation;
+        private float _minVerticalRotation;
+        
+        private const float FirePipeMaxAnglesOffset = 45f;
+        private const float FirePipeMinAnglesOffset = 10f;
 
 
         public CannonMovement(Transform mainConstruction, Transform firePipe)
         {
             _mainConstruction = mainConstruction;
             _firePipe = firePipe;
+            
+            SetRotationRange();
+        }
+
+        private void SetRotationRange()
+        {
+            _maxVerticalRotation = _firePipe.rotation.eulerAngles.z + FirePipeMaxAnglesOffset;
+            _minVerticalRotation = _firePipe.rotation.eulerAngles.z - FirePipeMinAnglesOffset;
         }
 
         public void MoveCannon()
@@ -22,14 +36,27 @@ namespace DefaultNamespace
 
         private void MoveVertical()
         {
-            var rotation = Input.GetAxis("Vertical") * Time.deltaTime * 100f;
-            _firePipe.rotation = Quaternion.Euler( _firePipe.rotation.x,  _firePipe.rotation.y,  _firePipe.rotation.z + rotation);
+            var verticalInput = Input.GetAxis("Vertical");
+            if (Mathf.Abs(verticalInput) > 0.1f)
+            {
+                var rotationAmount = verticalInput * Time.deltaTime * 100f;
+                
+                var currentZRotation = _firePipe.eulerAngles.z;
+                currentZRotation = Mathf.Clamp(currentZRotation - rotationAmount, _minVerticalRotation, _maxVerticalRotation);
+                
+                
+                _firePipe.eulerAngles = new Vector3(_firePipe.eulerAngles.x, _firePipe.eulerAngles.y, currentZRotation);
+            }
         }
 
         private void MoveHorizontal()
         {
-            var movement = Input.GetAxis("Horizontal") * Time.deltaTime * 100f;
-            _mainConstruction.rotation = Quaternion.Euler(_mainConstruction.rotation.x, _mainConstruction.rotation.y + movement, _mainConstruction.rotation.z);
+            var horizontalInput = Input.GetAxis("Horizontal");
+            if (Mathf.Abs(horizontalInput) > 0.1f)
+            {
+                var rotationAmount = horizontalInput * Time.deltaTime * 100f;
+                _mainConstruction.Rotate(Vector3.up, rotationAmount);
+            }
         }
     }
 }
