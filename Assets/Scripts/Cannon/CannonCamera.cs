@@ -4,7 +4,7 @@ using Vector3 = UnityEngine.Vector3;
 
 namespace Cannon
 {
-    public class CannonCameraSpot
+    public class CannonCamera
     {
         private readonly Camera _cam;
         private readonly Transform _camSpot;
@@ -14,7 +14,7 @@ namespace Cannon
         
         private readonly CannonMovementSettings _cannonMovementSettings;
 
-        public CannonCameraSpot(Camera cam, Transform cameraSpot, Transform cannonConstruction, CannonMovementSettings cannonMovementSettings)
+        public CannonCamera(Camera cam, Transform cameraSpot, Transform cannonConstruction, CannonMovementSettings cannonMovementSettings)
         {
             _cam = cam;
             _camSpot = cameraSpot;

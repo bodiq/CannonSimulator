@@ -11,19 +11,23 @@ namespace Cannon
 
         [SerializeField] private CannonMovementSettings cannonMovementSettings;
 
-        private CannonCameraSpot _cannonCameraSpot;
+        private CannonCamera _cannonCamera;
         private CannonMovement _cannonMovement;
 
         private void Start()
         {
-            _cannonCameraSpot = new CannonCameraSpot(Camera.main, cameraSpot, mainConstruction, cannonMovementSettings);
+            _cannonCamera = new CannonCamera(Camera.main, cameraSpot, mainConstruction, cannonMovementSettings);
             _cannonMovement = new CannonMovement(mainConstruction, cannonPipe, cannonMovementSettings);
         }
 
         private void Update()
         {
-            _cannonCameraSpot.SetCannonCamera();
             _cannonMovement.MoveCannon();
+        }
+
+        private void LateUpdate()
+        {
+            _cannonCamera.SetCannonCamera(); 
         }
     }
 }
