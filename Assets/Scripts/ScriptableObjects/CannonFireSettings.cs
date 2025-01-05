@@ -11,6 +11,7 @@ namespace ScriptableObjects
         [SerializeField] private float startSpeed;
         [SerializeField] private float timeStep;
         [SerializeField] private float bounceDamping;
+        [SerializeField] private float recoilSpeed;
         
         public float Gravity => gravity;
         public int ResolutionPoints => resolutionPoints;
@@ -18,5 +19,6 @@ namespace ScriptableObjects
         public float StartSpeed => startSpeed;
         public float TimeStep => timeStep;
         public float BounceDamping => bounceDamping;
+        public float RecoilSpeed => recoilSpeed;
     }
 }

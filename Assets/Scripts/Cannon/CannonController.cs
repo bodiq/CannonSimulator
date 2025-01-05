@@ -22,7 +22,7 @@ namespace Cannon
         {
             _cannonCamera = new CannonCamera(Camera.main, cameraSpot, mainConstruction, cannonMovementSettings);
             _cannonMovement = new CannonMovement(mainConstruction, cannonPipe, cannonMovementSettings);
-            _cannonFire = new CannonFire(projectilePooler, firePoint);
+            _cannonFire = new CannonFire(projectilePooler, firePoint, cannonPipe);
         }
 
         private void Update()
@@ -33,6 +33,8 @@ namespace Cannon
             {
                 _cannonFire.Shoot();
             }
+            
+            _cannonFire.TryPlayRecoilAnimation();
         }
 
         private void LateUpdate()
