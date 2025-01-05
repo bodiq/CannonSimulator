@@ -6,11 +6,11 @@ namespace Poolers
 {
     public class ProjectilePooler : MonoBehaviour
     {
-        [SerializeField] private Projectile projectilePrefab;
+        [SerializeField] private Projectile.Projectile projectilePrefab;
         [SerializeField] private int poolSize;
         [SerializeField] private Transform parent;
         
-        private readonly Queue<Projectile> _projectiles = new();
+        private readonly Queue<Projectile.Projectile> _projectiles = new();
 
         private void Awake()
         {
@@ -22,12 +22,13 @@ namespace Poolers
             for (var i = 0; i < poolSize; i++)
             {
                 var projectile = Instantiate(projectilePrefab, parent);
+                projectile.OnCreate();
                 projectile.gameObject.SetActive(false);
                 _projectiles.Enqueue(projectile);
             }
         }
 
-        public Projectile GetProjectile()
+        public Projectile.Projectile GetProjectile()
         {
             if (_projectiles == null || _projectiles.Count == 0)
             {
@@ -37,7 +38,7 @@ namespace Poolers
             return _projectiles.Dequeue();
         }
 
-        public void ReturnProjectile(Projectile projectile)
+        public void ReturnProjectile(Projectile.Projectile projectile)
         {
             projectile.gameObject.SetActive(false);
             _projectiles.Enqueue(projectile);

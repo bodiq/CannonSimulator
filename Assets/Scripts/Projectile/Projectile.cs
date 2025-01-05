@@ -2,11 +2,12 @@
 using ScriptableObjects;
 using UnityEngine;
 
-namespace Cannon
+namespace Projectile
 {
     public class Projectile : MonoBehaviour
     {
         [SerializeField] private CannonFireSettings cannonFireSettings;
+        [SerializeField] private ProjectileMeshGenerator projectileMeshGenerator;
         
         private static ProjectilePooler _pooler;
         
@@ -14,6 +15,12 @@ namespace Cannon
         
         private Vector3 _velocity;
         private Vector3 _position;
+
+        public void OnCreate()
+        {
+            transform.position = Vector3.zero;
+            projectileMeshGenerator.SetRandomMesh();
+        }
         
         public void Initialize(Transform startPos, ProjectilePooler projectilePooler)
         {

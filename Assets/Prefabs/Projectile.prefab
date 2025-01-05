@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 6296730784774250534}
   - component: {fileID: 4828448762622166533}
   - component: {fileID: 6554938417206711261}
+  - component: {fileID: 8334943230245823728}
   m_Layer: 0
   m_Name: Projectile
   m_TagString: Untagged
@@ -119,3 +120,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cannonFireSettings: {fileID: 11400000, guid: 24cbdcb761deef347982d3bf694366dc, type: 2}
+  projectileMeshGenerator: {fileID: 8334943230245823728}
+--- !u!114 &8334943230245823728
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9126606524903682595}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a723b3aa3c5f498896ea9779b9e86b26, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  meshFilter: {fileID: 5517187432042113895}
+  radius: 0.5
+  randomRange: 1
