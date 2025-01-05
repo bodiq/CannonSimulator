@@ -56,11 +56,13 @@ namespace Cannon
             {
                 var offsetX = Random.Range(-1f, 1f) * _shakeMagnitude; 
                 var offsetY = Random.Range(-1f, 1f) * _shakeMagnitude; 
-                _cam.transform.localPosition = _originalCamPosition + new Vector3(offsetX, offsetY, 0f); _shakeDuration -= Time.deltaTime;
+                _cam.transform.localPosition = _originalCamPosition + new Vector3(offsetX, offsetY, 0f); 
+                _shakeDuration -= Time.deltaTime;
             }
             else
             {
-                _isShaking = false; _cam.transform.localPosition = _originalCamPosition; 
+                _isShaking = false; 
+                _cam.transform.localPosition = _originalCamPosition; 
             } 
         }
     }
