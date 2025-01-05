@@ -1,3 +1,4 @@
+using Poolers;
 using ScriptableObjects;
 using UnityEngine;
 
@@ -8,18 +9,20 @@ namespace Cannon
         [SerializeField] private Transform cameraSpot;
         [SerializeField] private Transform mainConstruction;
         [SerializeField] private Transform cannonPipe;
-        
-        [SerializeField] private CannonFire cannonFire;
+        [SerializeField] private Transform firePoint;
 
         [SerializeField] private CannonMovementSettings cannonMovementSettings;
+        [SerializeField] private ProjectilePooler projectilePooler;
 
         private CannonCamera _cannonCamera;
         private CannonMovement _cannonMovement;
+        private CannonFire _cannonFire;
 
         private void Start()
         {
             _cannonCamera = new CannonCamera(Camera.main, cameraSpot, mainConstruction, cannonMovementSettings);
             _cannonMovement = new CannonMovement(mainConstruction, cannonPipe, cannonMovementSettings);
+            _cannonFire = new CannonFire(projectilePooler, firePoint);
         }
 
         private void Update()
@@ -28,7 +31,7 @@ namespace Cannon
 
             if (Input.GetKeyDown(KeyCode.Space))
             {
-                cannonFire.Shoot();
+                _cannonFire.Shoot();
             }
         }
 

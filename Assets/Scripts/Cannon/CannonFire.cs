@@ -1,47 +1,26 @@
-﻿using System.Collections;
+﻿using Poolers;
 using ScriptableObjects;
 using UnityEngine;
 
 namespace Cannon
 {
-    public class CannonFire : MonoBehaviour
+    public class CannonFire
     {
-        [SerializeField] private Transform firePoint;
-        [SerializeField] private GameObject projectilePrefab;
-        [SerializeField] private CannonFireSettings cannonFireSettings;
+        private readonly Transform _firePoint;
+        private readonly ProjectilePooler _projectilePooler;
+        private readonly CannonFireSettings _cannonFireSettings;
+
+        public CannonFire(ProjectilePooler projectilePooler, Transform firePoint)
+        {
+            _firePoint = firePoint;
+            _projectilePooler = projectilePooler;
+        }
         
         public void Shoot()
         {
-            var projectile = Instantiate(projectilePrefab, firePoint.position, Quaternion.identity);
-            StartCoroutine(ProjectileShoot(projectile));
-        }
-
-        private IEnumerator ProjectileShoot(GameObject projectile)
-        {
-            var velocity = firePoint.forward * cannonFireSettings.StartSpeed;
-            var position = projectile.transform.position;
-
-            var bounces = 0;
-            
-            while (true)
-            {
-                if (bounces > cannonFireSettings.MaxBounces) break;
-                
-                position += velocity * Time.deltaTime;
-                velocity.y += cannonFireSettings.Gravity * Time.deltaTime;
-
-                projectile.transform.position = position;
-
-                if (Physics.Raycast(position, velocity, out RaycastHit hit, velocity.magnitude * Time.deltaTime))
-                {
-                    Debug.LogError("Hit: " + hit.collider.name);
-                    bounces++;
-                    velocity = Vector3.Reflect(velocity, hit.normal) * cannonFireSettings.BounceDamping;
-                    position = hit.point;
-                }
-                
-                yield return null;
-            }
+            var projectile = _projectilePooler.GetProjectile();
+            projectile.Initialize(_firePoint, _projectilePooler);
+            projectile.gameObject.SetActive(true);
         }
     }
 }
