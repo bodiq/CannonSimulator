@@ -429,6 +429,7 @@ MonoBehaviour:
   cannonPipe: {fileID: 8474371943055062526}
   firePoint: {fileID: 7590741729676102162}
   cannonMovementSettings: {fileID: 11400000, guid: 1835c0f88b03b53409157bb479a08cea, type: 2}
+  cannonFireSettings: {fileID: 11400000, guid: 24cbdcb761deef347982d3bf694366dc, type: 2}
   projectilePooler: {fileID: 2169389859087238038}
 --- !u!1 &7154126244468368320
 GameObject:

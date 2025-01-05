@@ -12,17 +12,19 @@ namespace Cannon
         [SerializeField] private Transform firePoint;
 
         [SerializeField] private CannonMovementSettings cannonMovementSettings;
+        [SerializeField] private CannonFireSettings cannonFireSettings;
         [SerializeField] private ProjectilePooler projectilePooler;
 
         private CannonCamera _cannonCamera;
         private CannonMovement _cannonMovement;
         private CannonFire _cannonFire;
+        private CameraShake _cameraShake;
 
         private void Start()
         {
             _cannonCamera = new CannonCamera(Camera.main, cameraSpot, mainConstruction, cannonMovementSettings);
             _cannonMovement = new CannonMovement(mainConstruction, cannonPipe, cannonMovementSettings);
-            _cannonFire = new CannonFire(projectilePooler, firePoint, cannonPipe);
+            _cannonFire = new CannonFire(projectilePooler, cannonFireSettings, firePoint, cannonPipe);
         }
 
         private void Update()
@@ -32,6 +34,7 @@ namespace Cannon
             if (Input.GetKeyDown(KeyCode.Space))
             {
                 _cannonFire.Shoot();
+                _cannonCamera.StartShake(0.1f, 0.05f);
             }
             
             _cannonFire.TryPlayRecoilAnimation();

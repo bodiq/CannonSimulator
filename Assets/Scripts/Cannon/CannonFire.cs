@@ -16,11 +16,12 @@ namespace Cannon
         
         private bool _isRecoiling;
 
-        public CannonFire(ProjectilePooler projectilePooler, Transform firePoint, Transform cannonPipe)
+        public CannonFire(ProjectilePooler projectilePooler, CannonFireSettings cannonFireSettings, Transform firePoint, Transform cannonPipe)
         {
             _firePoint = firePoint;
             _projectilePooler = projectilePooler;
             _cannonPipe = cannonPipe;
+            _cannonFireSettings = cannonFireSettings;
             
             _startFirePipePosition = _cannonPipe.localPosition;
         }

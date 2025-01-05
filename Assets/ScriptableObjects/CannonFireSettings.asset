@@ -18,3 +18,4 @@ MonoBehaviour:
   startSpeed: 20
   timeStep: 0.01
   bounceDamping: 0.5
+  recoilSpeed: 40
