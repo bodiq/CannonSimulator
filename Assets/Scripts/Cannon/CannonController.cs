@@ -3,11 +3,13 @@ using UnityEngine;
 
 namespace Cannon
 {
-    public class Cannon : MonoBehaviour
+    public class CannonController : MonoBehaviour
     {
         [SerializeField] private Transform cameraSpot;
         [SerializeField] private Transform mainConstruction;
         [SerializeField] private Transform cannonPipe;
+        
+        [SerializeField] private CannonFire cannonFire;
 
         [SerializeField] private CannonMovementSettings cannonMovementSettings;
 
@@ -23,6 +25,11 @@ namespace Cannon
         private void Update()
         {
             _cannonMovement.MoveCannon();
+
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                cannonFire.Shoot();
+            }
         }
 
         private void LateUpdate()

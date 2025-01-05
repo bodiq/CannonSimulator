@@ -108,6 +108,7 @@ GameObject:
   - component: {fileID: 5827003828315936891}
   - component: {fileID: 4753943980618144565}
   - component: {fileID: 7427427805952462842}
+  - component: {fileID: 1523203935397933073}
   m_Layer: 0
   m_Name: FirePipe
   m_TagString: Untagged
@@ -300,6 +301,21 @@ LineRenderer:
   m_UseWorldSpace: 1
   m_Loop: 0
   m_ApplyActiveColorSpace: 1
+--- !u!114 &1523203935397933073
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5086929659282867223}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f1fd847064914b5c8728f9d4635cc9fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  firePoint: {fileID: 7590741729676102162}
+  projectilePrefab: {fileID: 9126606524903682595, guid: 8f49e851538c3064e9bfcbd6f59fb9b2, type: 3}
+  cannonFireSettings: {fileID: 11400000, guid: 24cbdcb761deef347982d3bf694366dc, type: 2}
 --- !u!1 &5150608172661027591
 GameObject:
   m_ObjectHideFlags: 0
@@ -379,6 +395,7 @@ MonoBehaviour:
   cameraSpot: {fileID: 1763512536703332677}
   mainConstruction: {fileID: 4154099998962842286}
   cannonPipe: {fileID: 8474371943055062526}
+  cannonFire: {fileID: 1523203935397933073}
   cannonMovementSettings: {fileID: 11400000, guid: 1835c0f88b03b53409157bb479a08cea, type: 2}
 --- !u!1 &7154126244468368320
 GameObject:
