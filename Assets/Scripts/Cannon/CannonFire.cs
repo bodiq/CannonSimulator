@@ -18,7 +18,7 @@ namespace Cannon
         
         private bool _isRecoiling;
 
-        private float _power;
+        private float _power = 0;
 
         public CannonFire(ProjectilePooler projectilePooler, CannonFireSettings cannonFireSettings, Transform firePoint, Transform cannonPipe, ParticleExplodePooler particleExplodePooler)
         {
@@ -43,6 +43,10 @@ namespace Cannon
             if (_isRecoiling) return;
             
             var projectile = _projectilePooler.GetProjectile();
+            if (_power == 0f)
+            {
+                _power = _cannonFireSettings.MinPower;
+            }
             projectile.Initialize(_firePoint, _projectilePooler, _power, _particleExplodePooler);
             projectile.gameObject.SetActive(true);
             

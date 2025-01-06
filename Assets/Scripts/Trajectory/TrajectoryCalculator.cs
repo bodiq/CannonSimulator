@@ -31,7 +31,7 @@ namespace Trajectory
                 _positionPoint += _velocity * _cannonFireSettings.TimeStep;
                 _velocity.y += _cannonFireSettings.Gravity * _cannonFireSettings.TimeStep;
 
-                if (Physics.Raycast(_positionPoint, _velocity, out RaycastHit hitInfo, _velocity.magnitude * _cannonFireSettings.TimeStep))
+                if (Physics.Raycast(_positionPoint, _velocity, out RaycastHit hitInfo, _velocity.magnitude * _cannonFireSettings.TimeStep, 0))
                 {
                     _positionPoint = hitInfo.point;
                     break;
