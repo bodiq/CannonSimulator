@@ -1,11 +1,12 @@
-﻿using GlobalHandlers;
+﻿using System;
+using GlobalHandlers;
 using Poolers;
 using ScriptableObjects;
 using UnityEngine;
 
 namespace Cannon
 {
-    public class CannonFire
+    public class CannonFire : IDisposable
     {
         private readonly Transform _firePoint;
         private readonly ProjectilePooler _projectilePooler;
@@ -27,7 +28,6 @@ namespace Cannon
             _cannonPipe = cannonPipe;
             _cannonFireSettings = cannonFireSettings;
             _particleExplodePooler = particleExplodePooler;
-            
             _startFirePipePosition = _cannonPipe.localPosition;
 
             EventsHandler.OnPowerChange += OnPowerChange;
@@ -69,6 +69,11 @@ namespace Cannon
             {
                 _cannonPipe.localPosition = Vector3.Lerp(_cannonPipe.localPosition, _startFirePipePosition, _cannonFireSettings.RecoilSpeed * Time.deltaTime);
             }
+        }
+
+        public void Dispose()
+        {
+            EventsHandler.OnPowerChange -= OnPowerChange;
         }
     }
 }
