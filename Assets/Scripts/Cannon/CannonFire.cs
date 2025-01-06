@@ -1,4 +1,5 @@
-﻿using Poolers;
+﻿using GlobalHandlers;
+using Poolers;
 using ScriptableObjects;
 using UnityEngine;
 
@@ -16,6 +17,8 @@ namespace Cannon
         
         private bool _isRecoiling;
 
+        private float _power;
+
         public CannonFire(ProjectilePooler projectilePooler, CannonFireSettings cannonFireSettings, Transform firePoint, Transform cannonPipe)
         {
             _firePoint = firePoint;
@@ -24,6 +27,13 @@ namespace Cannon
             _cannonFireSettings = cannonFireSettings;
             
             _startFirePipePosition = _cannonPipe.localPosition;
+
+            EventsHandler.OnPowerChange += OnPowerChange;
+        }
+
+        private void OnPowerChange(float newPower)
+        {
+            _power = newPower;
         }
         
         public void Shoot()
@@ -31,7 +41,7 @@ namespace Cannon
             if (_isRecoiling) return;
             
             var projectile = _projectilePooler.GetProjectile();
-            projectile.Initialize(_firePoint, _projectilePooler);
+            projectile.Initialize(_firePoint, _projectilePooler, _power);
             projectile.gameObject.SetActive(true);
             
             _isRecoiling = true;

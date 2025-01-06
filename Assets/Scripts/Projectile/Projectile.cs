@@ -22,10 +22,10 @@ namespace Projectile
             projectileMeshGenerator.SetRandomMesh();
         }
         
-        public void Initialize(Transform startPos, ProjectilePooler projectilePooler)
+        public void Initialize(Transform startPos, ProjectilePooler projectilePooler, float powerShoot)
         {
             _position = startPos.position;
-            _velocity = startPos.forward * cannonFireSettings.StartSpeed;
+            _velocity = startPos.forward * powerShoot;
             _pooler = projectilePooler;
             
             transform.position = _position;

@@ -15,7 +15,8 @@ MonoBehaviour:
   gravity: -9.8
   resolutionPoints: 250
   maxBounces: 1
-  startSpeed: 20
+  minPower: 10
+  maxPower: 80
   timeStep: 0.01
-  bounceDamping: 0.5
+  bounceDamping: 0.2
   recoilSpeed: 40

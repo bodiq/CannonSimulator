@@ -8,7 +8,8 @@ namespace ScriptableObjects
         [SerializeField] private float gravity;
         [SerializeField] private int resolutionPoints;
         [SerializeField] private int maxBounces;
-        [SerializeField] private float startSpeed;
+        [SerializeField] private float minPower;
+        [SerializeField] private float maxPower;
         [SerializeField] private float timeStep;
         [SerializeField] private float bounceDamping;
         [SerializeField] private float recoilSpeed;
@@ -16,7 +17,8 @@ namespace ScriptableObjects
         public float Gravity => gravity;
         public int ResolutionPoints => resolutionPoints;
         public int MaxBounces => maxBounces;
-        public float StartSpeed => startSpeed;
+        public float MinPower => minPower;
+        public float MaxPower => maxPower;
         public float TimeStep => timeStep;
         public float BounceDamping => bounceDamping;
         public float RecoilSpeed => recoilSpeed;

@@ -1,3 +1,5 @@
+using System;
+using GlobalHandlers;
 using ScriptableObjects;
 using UnityEngine;
 
@@ -15,6 +17,13 @@ namespace Trajectory
         private Vector3 _startPosition;
         private Vector3 _startVelocity;
 
+        private float _power;
+
+        private void OnEnable()
+        {
+            EventsHandler.OnPowerChange += OnPowerChange;
+        }
+
         private void Start()
         {
             _trajectoryCalculator = new TrajectoryCalculator(cannonFireSettings);
@@ -25,15 +34,25 @@ namespace Trajectory
             DrawTrajectory();
         }
 
+        private void OnPowerChange(float value)
+        {
+            _power = value;
+        }
+
         private void DrawTrajectory()
         {
             _startPosition = firePoint.position;
-            _startVelocity = firePoint.forward * cannonFireSettings.StartSpeed;
+            _startVelocity = firePoint.forward * _power;
             
             var points = _trajectoryCalculator.GetTrajectoryPoints(_startPosition, _startVelocity);
             
             lineRenderer.positionCount = points.Count;
             lineRenderer.SetPositions(points.ToArray());
+        }
+
+        private void OnDisable()
+        {
+            EventsHandler.OnPowerChange -= OnPowerChange;
         }
     }
 }

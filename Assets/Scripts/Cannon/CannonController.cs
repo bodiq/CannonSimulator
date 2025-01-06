@@ -18,7 +18,6 @@ namespace Cannon
         private CannonCamera _cannonCamera;
         private CannonMovement _cannonMovement;
         private CannonFire _cannonFire;
-        private CameraShake _cameraShake;
 
         private void Start()
         {
