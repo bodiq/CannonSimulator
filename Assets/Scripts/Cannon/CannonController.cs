@@ -14,6 +14,7 @@ namespace Cannon
         [SerializeField] private CannonMovementSettings cannonMovementSettings;
         [SerializeField] private CannonFireSettings cannonFireSettings;
         [SerializeField] private ProjectilePooler projectilePooler;
+        [SerializeField] private ParticleExplodePooler particleExplodePooler;
 
         private CannonCamera _cannonCamera;
         private CannonMovement _cannonMovement;
@@ -23,7 +24,7 @@ namespace Cannon
         {
             _cannonCamera = new CannonCamera(Camera.main, cameraSpot, mainConstruction, cannonMovementSettings);
             _cannonMovement = new CannonMovement(mainConstruction, cannonPipe, cannonMovementSettings);
-            _cannonFire = new CannonFire(projectilePooler, cannonFireSettings, firePoint, cannonPipe);
+            _cannonFire = new CannonFire(projectilePooler, cannonFireSettings, firePoint, cannonPipe, particleExplodePooler);
         }
 
         private void Update()

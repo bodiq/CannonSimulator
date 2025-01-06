@@ -9,7 +9,8 @@ namespace Projectile
         [SerializeField] private CannonFireSettings cannonFireSettings;
         [SerializeField] private ProjectileMeshGenerator projectileMeshGenerator;
         
-        private static ProjectilePooler _pooler;
+        private static ProjectilePooler _projectilePooler;
+        private static ParticleExplodePooler _explodePooler;
         
         private int _bounces;
         
@@ -22,11 +23,12 @@ namespace Projectile
             projectileMeshGenerator.SetRandomMesh();
         }
         
-        public void Initialize(Transform startPos, ProjectilePooler projectilePooler, float powerShoot)
+        public void Initialize(Transform startPos, ProjectilePooler projectilePooler, float powerShoot, ParticleExplodePooler explodePooler)
         {
             _position = startPos.position;
             _velocity = startPos.forward * powerShoot;
-            _pooler = projectilePooler;
+            _projectilePooler = projectilePooler;
+            _explodePooler = explodePooler;
             
             transform.position = _position;
         }
@@ -36,7 +38,8 @@ namespace Projectile
             if (_bounces > cannonFireSettings.MaxBounces)
             {
                 _bounces = 0;
-                _pooler.ReturnProjectile(this);
+                _explodePooler.PlayExplosion(transform.position);
+                _projectilePooler.ReturnProjectile(this);
                 return;
             }
             
