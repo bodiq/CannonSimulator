@@ -20,3 +20,4 @@ MonoBehaviour:
   timeStep: 0.01
   bounceDamping: 0.2
   recoilSpeed: 40
+  impactOffset: 0.01

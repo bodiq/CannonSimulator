@@ -13,6 +13,7 @@ namespace Cannon
         private readonly CannonFireSettings _cannonFireSettings;
         private readonly Transform _cannonPipe;
         private readonly ParticleExplodePooler _particleExplodePooler;
+        private readonly ImpactPooler _impactPooler;
 
         private readonly Vector3 _cannonRecoilOffset = new (0.5f, 0f, 0f);
         private readonly Vector3 _startFirePipePosition;
@@ -21,7 +22,12 @@ namespace Cannon
 
         private float _power = 0;
 
-        public CannonFire(ProjectilePooler projectilePooler, CannonFireSettings cannonFireSettings, Transform firePoint, Transform cannonPipe, ParticleExplodePooler particleExplodePooler)
+        public CannonFire(ProjectilePooler projectilePooler, 
+            CannonFireSettings cannonFireSettings, 
+            Transform firePoint, 
+            Transform cannonPipe, 
+            ParticleExplodePooler particleExplodePooler,
+            ImpactPooler impactPooler)
         {
             _firePoint = firePoint;
             _projectilePooler = projectilePooler;
@@ -29,6 +35,7 @@ namespace Cannon
             _cannonFireSettings = cannonFireSettings;
             _particleExplodePooler = particleExplodePooler;
             _startFirePipePosition = _cannonPipe.localPosition;
+            _impactPooler = impactPooler;
 
             EventsHandler.OnPowerChange += OnPowerChange;
         }
@@ -47,7 +54,7 @@ namespace Cannon
             {
                 _power = _cannonFireSettings.MinPower;
             }
-            projectile.Initialize(_firePoint, _projectilePooler, _power, _particleExplodePooler);
+            projectile.Initialize(_firePoint, _projectilePooler, _power, _particleExplodePooler, _impactPooler);
             projectile.gameObject.SetActive(true);
             
             _isRecoiling = true;

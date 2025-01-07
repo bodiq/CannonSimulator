@@ -64,6 +64,37 @@ Transform:
   m_Children: []
   m_Father: {fileID: 4917559476648041165}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &3386341756435725089
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 347484320041324295}
+  m_Layer: 0
+  m_Name: ProjectileImpactParent
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &347484320041324295
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3386341756435725089}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8474371943055062526}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3771389459339934686
 GameObject:
   m_ObjectHideFlags: 0
@@ -141,6 +172,7 @@ GameObject:
   - component: {fileID: 7427427805952462842}
   - component: {fileID: 2169389859087238038}
   - component: {fileID: 6603959656760545976}
+  - component: {fileID: 6419157728862752837}
   m_Layer: 0
   m_Name: FirePipe
   m_TagString: Untagged
@@ -164,6 +196,7 @@ Transform:
   - {fileID: 7590741729676102162}
   - {fileID: 2106653842945512794}
   - {fileID: 10802298424479967}
+  - {fileID: 347484320041324295}
   m_Father: {fileID: 4154099998962842286}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
 --- !u!33 &1581929576404618948
@@ -365,6 +398,21 @@ MonoBehaviour:
   particle: {fileID: 417761080263594739, guid: 7800b8f6b712bfe49bd663eeb3ebe1e4, type: 3}
   poolSize: 50
   parent: {fileID: 10802298424479967}
+--- !u!114 &6419157728862752837
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5086929659282867223}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 719527af514f9ad449aad2a7709500f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  impact: {fileID: 1085392690416159709, guid: 20c0d683671a2344bae932853309e785, type: 3}
+  poolSize: 100
+  parent: {fileID: 347484320041324295}
 --- !u!1 &5150608172661027591
 GameObject:
   m_ObjectHideFlags: 0
@@ -480,6 +528,7 @@ MonoBehaviour:
   cannonFireSettings: {fileID: 11400000, guid: 24cbdcb761deef347982d3bf694366dc, type: 2}
   projectilePooler: {fileID: 2169389859087238038}
   particleExplodePooler: {fileID: 6603959656760545976}
+  impactPooler: {fileID: 6419157728862752837}
 --- !u!1 &7154126244468368320
 GameObject:
   m_ObjectHideFlags: 0

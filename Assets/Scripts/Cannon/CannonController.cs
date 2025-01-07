@@ -6,15 +6,20 @@ namespace Cannon
 {
     public class CannonController : MonoBehaviour
     {
+        [Header("Cannon Objects")]
         [SerializeField] private Transform cameraSpot;
         [SerializeField] private Transform mainConstruction;
         [SerializeField] private Transform cannonPipe;
         [SerializeField] private Transform firePoint;
 
+        [Header("Scriptable Objects")]
         [SerializeField] private CannonMovementSettings cannonMovementSettings;
         [SerializeField] private CannonFireSettings cannonFireSettings;
+        
+        [Header("Poolers")]
         [SerializeField] private ProjectilePooler projectilePooler;
         [SerializeField] private ParticleExplodePooler particleExplodePooler;
+        [SerializeField] private ImpactPooler impactPooler;
 
         private CannonCamera _cannonCamera;
         private CannonMovement _cannonMovement;
@@ -24,7 +29,7 @@ namespace Cannon
         {
             _cannonCamera = new CannonCamera(Camera.main, cameraSpot, mainConstruction, cannonMovementSettings);
             _cannonMovement = new CannonMovement(mainConstruction, cannonPipe, cannonMovementSettings);
-            _cannonFire = new CannonFire(projectilePooler, cannonFireSettings, firePoint, cannonPipe, particleExplodePooler);
+            _cannonFire = new CannonFire(projectilePooler, cannonFireSettings, firePoint, cannonPipe, particleExplodePooler, impactPooler);
         }
 
         private void Update()

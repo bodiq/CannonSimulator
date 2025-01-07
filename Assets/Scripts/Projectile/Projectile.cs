@@ -11,6 +11,7 @@ namespace Projectile
         
         private static ProjectilePooler _projectilePooler;
         private static ParticleExplodePooler _explodePooler;
+        private static ImpactPooler _impactPooler;
         
         private int _bounces;
         
@@ -23,12 +24,13 @@ namespace Projectile
             projectileMeshGenerator.SetRandomMesh();
         }
         
-        public void Initialize(Transform startPos, ProjectilePooler projectilePooler, float powerShoot, ParticleExplodePooler explodePooler)
+        public void Initialize(Transform startPos, ProjectilePooler projectilePooler, float powerShoot, ParticleExplodePooler explodePooler, ImpactPooler impactPooler)
         {
             _position = startPos.position;
             _velocity = startPos.forward * powerShoot;
             _projectilePooler = projectilePooler;
             _explodePooler = explodePooler;
+            _impactPooler = impactPooler;
             
             transform.position = _position;
         }
@@ -52,6 +54,14 @@ namespace Projectile
                 _bounces++;
                 _velocity = Vector3.Reflect(_velocity, hit.normal) * cannonFireSettings.BounceDamping;
                 transform.position = hit.point;
+
+                if (hit.collider.CompareTag("Wall"))
+                {
+                    var impact = _impactPooler.GetImpact();
+                    impact.gameObject.SetActive(true);
+                    impact.transform.position = hit.point + hit.normal * cannonFireSettings.ImpactOffset;
+                    impact.transform.rotation = Quaternion.LookRotation(hit.normal);
+                }
             }
         }
 
