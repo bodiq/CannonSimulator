@@ -4,16 +4,20 @@ namespace Projectile
 {
     public class ProjectileImpact : MonoBehaviour
     {
-        private static float _lifeTime = 4f;
+        [SerializeField] private float lifeTime = 4f;
         
         public void SetSelfDestruct()
         {
-            Invoke(nameof(DisableImpact), _lifeTime);
+            CancelInvoke(nameof(DisableImpact)); 
+            Invoke(nameof(DisableImpact), lifeTime);
         }
-
+        
         private void DisableImpact()
         {
-            gameObject.SetActive(false);
+            if (gameObject.activeSelf) 
+            {
+                gameObject.SetActive(false);
+            }
         }
     }
 }

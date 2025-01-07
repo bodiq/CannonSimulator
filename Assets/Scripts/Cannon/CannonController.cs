@@ -25,6 +25,8 @@ namespace Cannon
         private CannonMovement _cannonMovement;
         private CannonFire _cannonFire;
 
+        private float _nextFireTime = 0;
+        
         private void Start()
         {
             _cannonCamera = new CannonCamera(Camera.main, cameraSpot, mainConstruction, cannonMovementSettings);
@@ -36,8 +38,9 @@ namespace Cannon
         {
             _cannonMovement.MoveCannon();
 
-            if (Input.GetKeyDown(KeyCode.Space))
+            if (Input.GetKeyDown(KeyCode.Space) && Time.time >= _nextFireTime)
             {
+                _nextFireTime = Time.time + cannonFireSettings.FireRate;
                 _cannonFire.Shoot();
                 _cannonCamera.StartShake(0.1f, 0.05f);
             }

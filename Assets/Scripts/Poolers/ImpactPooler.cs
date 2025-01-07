@@ -22,8 +22,16 @@ namespace Poolers
         
         private void CreateParent()
         {
-            var parentObject = new GameObject("ImpactParentPooler");
-            _impactsParent = parentObject.transform;
+            var existingParent = GameObject.Find("ImpactParentPooler");
+            if (existingParent != null)
+            {
+                _impactsParent = existingParent.transform;
+            }
+            else
+            {
+                var parentObject = new GameObject("ImpactParentPooler");
+                _impactsParent = parentObject.transform;
+            }
         }
 
         private void InitializePool()
@@ -34,6 +42,14 @@ namespace Poolers
                 projectileImpact.gameObject.SetActive(false);
                 _impacts.Add(projectileImpact);
             }
+        }
+        
+        private ProjectileImpact ExpandPool()
+        {
+            var newImpact = Instantiate(impact, _impactsParent);
+            newImpact.gameObject.SetActive(false);
+            _impacts.Add(newImpact);
+            return newImpact;
         }
 
         public ProjectileImpact GetImpact()
@@ -46,11 +62,10 @@ namespace Poolers
             var firstActiveImpact = _impacts.FirstOrDefault(system => !system.gameObject.activeSelf);
             if (firstActiveImpact != null)
             {
-                firstActiveImpact.SetSelfDestruct();
                 return firstActiveImpact;
             }
 
-            return null;
+            return ExpandPool();
         }
     }
 }

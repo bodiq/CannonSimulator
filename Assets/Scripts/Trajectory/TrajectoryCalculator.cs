@@ -7,11 +7,12 @@ namespace Trajectory
     public class TrajectoryCalculator
     {
         private readonly List<Vector3> _trajectoryPoints = new();
-
         private readonly CannonFireSettings _cannonFireSettings;
         
         private Vector3 _positionPoint;
         private Vector3 _velocity;
+        
+        private LayerMask _layerMask = LayerMask.GetMask("Default");
         
         public TrajectoryCalculator(CannonFireSettings fireSettings)
         {
@@ -31,7 +32,7 @@ namespace Trajectory
                 _positionPoint += _velocity * _cannonFireSettings.TimeStep;
                 _velocity.y += _cannonFireSettings.Gravity * _cannonFireSettings.TimeStep;
 
-                if (Physics.Raycast(_positionPoint, _velocity, out RaycastHit hitInfo, _velocity.magnitude * _cannonFireSettings.TimeStep, 0))
+                if (Physics.Raycast(_positionPoint, _velocity, out RaycastHit hitInfo, _velocity.magnitude * _cannonFireSettings.TimeStep, _layerMask))
                 {
                     _positionPoint = hitInfo.point;
                     break;

@@ -57,12 +57,25 @@ namespace Projectile
 
                 if (hit.collider.CompareTag("Wall"))
                 {
-                    var impact = _impactPooler.GetImpact();
-                    impact.gameObject.SetActive(true);
-                    impact.transform.position = hit.point + hit.normal * cannonFireSettings.ImpactOffset;
-                    impact.transform.rotation = Quaternion.LookRotation(hit.normal);
+                    CreateImpact(hit.point, hit.normal);
                 }
             }
+        }
+        
+        private void CreateImpact(Vector3 position, Vector3 normal)
+        {
+            var impact = _impactPooler.GetImpact();
+            
+            if (impact == null)
+            {
+                Debug.LogWarning("Impact pool is empty!");
+                return;
+            }
+            
+            impact.gameObject.SetActive(true);
+            impact.transform.position = position + normal * cannonFireSettings.ImpactOffset;
+            impact.transform.rotation = Quaternion.LookRotation(normal);
+            impact.SetSelfDestruct();
         }
 
         private void FixedUpdate()

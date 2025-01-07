@@ -11,6 +11,9 @@ namespace Trajectory
         [SerializeField] private LineRenderer lineRenderer;
         [SerializeField] private CannonFireSettings cannonFireSettings;
         [SerializeField] private Transform firePoint;
+        
+        [SerializeField] private Color lineColor = Color.white; 
+        [SerializeField] private float lineWidth = 0.1f;
     
         private TrajectoryCalculator _trajectoryCalculator;
         
@@ -27,11 +30,20 @@ namespace Trajectory
         private void Start()
         {
             _trajectoryCalculator = new TrajectoryCalculator(cannonFireSettings);
+            SetupLineRenderer();
         }
 
         private void LateUpdate()
         {
             DrawTrajectory();
+        }
+
+        private void SetupLineRenderer()
+        {
+            lineRenderer.startColor = lineColor;
+            lineRenderer.endColor = lineColor;
+            lineRenderer.startWidth = lineWidth;
+            lineRenderer.endWidth = lineWidth;
         }
 
         private void OnPowerChange(float value)
@@ -45,6 +57,13 @@ namespace Trajectory
             _startVelocity = firePoint.forward * _power;
             
             var points = _trajectoryCalculator.GetTrajectoryPoints(_startPosition, _startVelocity);
+            
+            if (points == null || points.Count == 0)
+            {
+                Debug.LogWarning("Trajectory points are empty!");
+                lineRenderer.positionCount = 0;
+                return;
+            }
             
             lineRenderer.positionCount = points.Count;
             lineRenderer.SetPositions(points.ToArray());
