@@ -142,6 +142,7 @@ GameObject:
   - component: {fileID: 2169389859087238038}
   - component: {fileID: 6603959656760545976}
   - component: {fileID: 6419157728862752837}
+  - component: {fileID: 8516374775830184149}
   m_Layer: 0
   m_Name: FirePipe
   m_TagString: Untagged
@@ -353,6 +354,7 @@ MonoBehaviour:
   projectilePrefab: {fileID: 6554938417206711261, guid: 8f49e851538c3064e9bfcbd6f59fb9b2, type: 3}
   poolSize: 50
   parent: {fileID: 2106653842945512794}
+  projectilesUpdateHandler: {fileID: 8516374775830184149}
 --- !u!114 &6603959656760545976
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -382,6 +384,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   impact: {fileID: 1085392690416159709, guid: 20c0d683671a2344bae932853309e785, type: 3}
   poolSize: 100
+--- !u!114 &8516374775830184149
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5086929659282867223}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 533d7a8918622664e9ae1418379c8fd4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5150608172661027591
 GameObject:
   m_ObjectHideFlags: 0

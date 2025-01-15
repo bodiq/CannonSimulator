@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Cannon;
+using Projectile;
 using UnityEngine;
 
 namespace Poolers
@@ -9,6 +10,7 @@ namespace Poolers
         [SerializeField] private Projectile.Projectile projectilePrefab;
         [SerializeField] private int poolSize;
         [SerializeField] private Transform parent;
+        [SerializeField] private ProjectilesUpdateHandler projectilesUpdateHandler;
         
         private readonly Queue<Projectile.Projectile> _projectiles = new();
 
@@ -24,6 +26,7 @@ namespace Poolers
                 var projectile = Instantiate(projectilePrefab, parent);
                 projectile.OnCreate();
                 projectile.gameObject.SetActive(false);
+                projectilesUpdateHandler.AddProjectile(projectile);
                 _projectiles.Enqueue(projectile);
             }
         }
@@ -34,7 +37,7 @@ namespace Poolers
             {
                 return null;
             }
-            
+
             return _projectiles.Dequeue();
         }
 

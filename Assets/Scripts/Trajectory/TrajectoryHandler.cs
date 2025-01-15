@@ -5,6 +5,8 @@ using UnityEngine;
 
 namespace Trajectory
 {
+    public delegate void MyDelegate();
+    
     [RequireComponent(typeof(LineRenderer))]
     public class TrajectoryHandler : MonoBehaviour
     {

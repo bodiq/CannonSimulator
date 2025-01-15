@@ -35,7 +35,7 @@ namespace Projectile
             transform.position = _position;
         }
 
-        private void SimulateProjectile()
+        public void SimulateProjectile()
         {
             if (_bounces > cannonFireSettings.MaxBounces)
             {
@@ -76,11 +76,6 @@ namespace Projectile
             impact.transform.position = position + normal * cannonFireSettings.ImpactOffset;
             impact.transform.rotation = Quaternion.LookRotation(normal);
             impact.SetSelfDestruct();
-        }
-
-        private void FixedUpdate()
-        {
-            SimulateProjectile();
         }
     }
 }

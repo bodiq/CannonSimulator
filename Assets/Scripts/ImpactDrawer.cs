@@ -1,4 +1,11 @@
+using System;
+using Unity.VisualScripting;
 using UnityEngine;
+
+public interface A : IDisposable, IInitializable
+{
+    void Draw();
+}
 
 public class ImpactDrawer : MonoBehaviour
 {
