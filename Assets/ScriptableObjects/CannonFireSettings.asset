@@ -21,3 +21,4 @@ MonoBehaviour:
   bounceDamping: 0.2
   recoilSpeed: 40
   impactOffset: 0.01
+  fireRate: 0.1
