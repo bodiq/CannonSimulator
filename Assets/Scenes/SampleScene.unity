@@ -910,6 +910,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cannon
       objectReference: {fileID: 0}
+    - target: {fileID: 7924067239008253921, guid: 28ee63a76399e9e46ab5009b5b1939ae, type: 3}
+      propertyPath: camera
+      value: 
+      objectReference: {fileID: 4394373568266857999}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -972,6 +976,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fe599ffc9bab51649b112b4134424604, type: 3}
+--- !u!20 &4394373568266857999 stripped
+Camera:
+  m_CorrespondingSourceObject: {fileID: 583741116724292762, guid: fe599ffc9bab51649b112b4134424604, type: 3}
+  m_PrefabInstance: {fileID: 4394373568266857998}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &7666892059501568390
 PrefabInstance:
   m_ObjectHideFlags: 0
