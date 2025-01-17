@@ -20,9 +20,9 @@ namespace Cannon
         private float _shakeDuration; 
         private float _shakeMagnitude;
 
-        public CannonCamera(Camera cam, Transform cameraSpot, Transform cannonConstruction, CannonMovementSettings cannonMovementSettings)
+        public CannonCamera(Transform cameraSpot, Transform cannonConstruction, CannonMovementSettings cannonMovementSettings)
         {
-            _cam = cam;
+            _cam = Camera.main;
             _camSpot = cameraSpot;
             _cannonConstruction = cannonConstruction;
             _cannonMovementSettings = cannonMovementSettings;
