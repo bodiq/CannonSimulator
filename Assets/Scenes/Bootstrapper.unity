@@ -834,6 +834,14 @@ MonoBehaviour:
         asset: {fileID: 102900000, guid: 9fc0d4010bbf28b4594072e72b8655ab, type: 3}
         guid: 9fc0d4010bbf28b4594072e72b8655ab
       SceneType: 3
+    - Reference:
+        asset: {fileID: 102900000, guid: 5a4a0432dde1640439db3548cbf217bf, type: 3}
+        guid: 5a4a0432dde1640439db3548cbf217bf
+      SceneType: 0
+    - Reference:
+        asset: {fileID: 102900000, guid: 0517f17f2e59c1e469221e7f00564347, type: 3}
+        guid: 0517f17f2e59c1e469221e7f00564347
+      SceneType: 2
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
