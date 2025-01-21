@@ -16,12 +16,12 @@ namespace Projectile
             }
         }
 
-        public void AddProjectile(global::Projectile.Projectile projectile)
+        public void AddProjectile(Projectile projectile)
         {
             _projectiles.Add(projectile);
         }
 
-        public void RemoveProjectile(global::Projectile.Projectile projectile)
+        public void RemoveProjectile(Projectile projectile)
         {
             _projectiles.Remove(projectile);
         }
